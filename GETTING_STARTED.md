@@ -88,10 +88,15 @@ RSpec.configure do |config|
   # additional factory_girl configuration
 
   config.before(:suite) do
+    DatabaseCleaner.start
     FactoryGirl.lint
+    DatabaseCleaner.clean
   end
 end
 ```
+
+After calling `FactoryGirl.lint`, you'll likely want to clear out the
+database, as built factories will create associated records.
 
 Defining factories
 ------------------
